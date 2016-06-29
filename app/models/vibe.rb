@@ -1,3 +1,4 @@
 class Vibe < ApplicationRecord
-  belongs_to :post
+  has_many :posts
+  attr_accessor :vibe_id
 end

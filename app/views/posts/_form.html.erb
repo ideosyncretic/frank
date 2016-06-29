@@ -1,31 +1,35 @@
-<%= form_for(post) do |f| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="container col-md-6">
+  <h1>New Post</h1>
+  <%= form_for(post) do |f| %>
+    <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field form-group">
-    <%= f.label :vibe %>
-    <%= f.collection_select :vibe, class:"form-control" %>
-  </div>
-
-  <div class="field form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, class:"form-control" %>
-  </div>
-
-  <div class="actions">
-    <% if current_page?(new_post_path) %>
-    <%= f.submit "Create Post" %>
-    <% else %>
-    <%= f.submit "Update Post" %>
+        <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-  </div>
-<% end %>
+
+    <fieldset class="form-group">
+      <%= f.label :vibe %>
+      <%= f.collection_select(:vibe_id, @vibes, :id, :name, required: true) %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <%= f.text_area :body, class:"form-control" %>
+    </fieldset>
+
+    <fieldset class="actions">
+      <button class="btn btn-default btn-back" href="<%= posts_path %>">Back
+      </button>
+      <% if current_page?(new_post_path) %>
+      <%= f.submit "Create Post", class:"btn btn-default btn-confirm" %>
+      <% else %>
+      <%= f.submit "Update Post", class:"btn btn-default btn-confirm" %>
+      <% end %>
+    </fieldset>
+  <% end %>
+</div>

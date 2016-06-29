@@ -1,6 +1,38 @@
-<h1>Editing Post</h1>
+<div class="container col-md-6">
+  <h1>Edit Post</h1>
+  <%= form_for(@post) do |f| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-<%= render 'form', post: @post %>
+        <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset class="form-group">
+      <%= f.collection_select(:vibe, Vibe.all, :id, :name) %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <%= f.text_area :body, class:"form-control" %>
+    </fieldset>
+
+    <fieldset class="actions">
+      <button class="btn btn-default btn-back" href="<%= posts_path %>">Back
+      </button>
+      <% if current_page?(new_post_path) %>
+      <%= f.submit "Create Post", class:"btn btn-default btn-confirm" %>
+      <% else %>
+      <%= f.submit "Update Post", class:"btn btn-default btn-confirm" %>
+      <% end %>
+    </fieldset>
+  <% end %>
+</div>
+
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>

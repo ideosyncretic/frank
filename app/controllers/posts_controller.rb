@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_vibes
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /posts
@@ -26,9 +27,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
-
-    @vibe = Vibe.create(vibe_choice: params[:vibe_choice])
-    @post.vibe << @vibe
 
     respond_to do |format|
       if @post.save
@@ -71,8 +69,12 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def prepare_vibes
+      @vibes = Vibe.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:body)
+      params.require(:post).permit(:vibe_id, :body)
     end
 end
