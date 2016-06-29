@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ $font-family-sans-serif: "Work Sans", Helvetica, Arial, sans-serif !default;
+ $font-size-base: 16px;
+
+ @import 'bootstrap-sprockets';
+ @import 'bootstrap';
+ @import 'https://fonts.googleapis.com/css?family=Noto+Serif|Work+Sans';
