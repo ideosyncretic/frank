@@ -19,7 +19,8 @@
     </fieldset>
 
     <fieldset class="form-group">
-      <%= f.text_area :body, class:"form-control", :maxlength => 120 %>
+      <%= f.text_area :body, class:"form-control", maxlength: @maximum_length, id: 'post_body' %>
+      Chars left: <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @maximum_length %></span>
     </fieldset>
 
     <fieldset class="actions">
@@ -32,4 +33,18 @@
       <% end %>
     </fieldset>
   <% end %>
+
+  <script>
+    $(document).ready(function() {
+      var post_body = $("#post_body");
+      var counter     = $("#counter");
+      var max_length  = counter.data("maximum-length");
+
+      post_body.keyup(function() {
+          counter.text(max_length - $(this).val().length);
+      });
+
+    });
+</script>
+
 </div>
