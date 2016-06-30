@@ -1,16 +1,21 @@
-<p>
-  <%= @post.body %>
-</p>
+<div class="row page">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="vibe-<%= @post.vibe.id %> post">
+      <h4><%= @post.body %>
+      </h4>
 
-<p>
-  <strong>by</strong>
-  <%= @post.user.email %>
-</p>
+      <p>
+        <strong>by</strong>
+        <%= @post.user.name %>
+      </p>
+    </div>
 
+    <% if current_user == @post.user %>
+    <a href="<%= edit_user_post_path(@post) %>" class="btn btn-default btn-back">Edit
+    </a>
+    <% end %>
+    <a href="<%= home_path %>" class="btn btn-default btn-back">Done
+    </a>
 
-<% if current_user == @post.user %>
-<a href="<%= edit_user_post_path(@post) %>" class="btn btn-default btn-back">Edit
-</a>
-<% end %>
-<a href="<%= home_path %>" class="btn btn-default btn-back">Done
-</a>
+  </div>
+</div>

@@ -1,11 +1,12 @@
 <div class="row">
 
-<div class="posts col-md-8 col-md-offset-2">
+<div class="page col-md-8 col-md-offset-2">
 
   <p>
   <% if user_signed_in? %>
-    <%= link_to 'New Post', new_user_post_path(current_user), class: 'btn btn-default btn-confirm btn-wide' %>
-  <% end %></p>
+    <a href="<%= new_user_post_path(current_user) %>" class='btn btn-default btn-confirm btn-wide'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>New Post</a>
+  <% end %>
+  </p>
 
   <!-- SEARCH BAR -->
   <form class="input-group searchform center has-feedback" action="<%= home_path %>" method="get"x>
@@ -26,17 +27,16 @@
 
     <!-- Table -->
     <table class="table table-hover">
-      <thead>
+      <!-- <thead>
         <tr>
-          <th colspan="1"><h4>Vibe</h4></th>
-          <th colspan="1"><h4>Post</h4></th>
-          <th colspan="1"><h4>User</h4></th>
+          <th colspan="1"><h5>Vibe</h5></th>
+          <th colspan="1"><h5>Post</h5></th>
+          <th colspan="1"><h5>User</h5></th>
           <th colspan="3"></th>
         </tr>
-      </thead>
-
-
+      </thead> -->
       <tbody>
+
         <% @posts.each do |post| %>
           <tr>
             <td class="vibe-<%= post.vibe.id %>"></td>
@@ -55,6 +55,7 @@
             <% end %>
           </tr>
         <% end %>
+
       </tbody>
     </table>
   </div>
