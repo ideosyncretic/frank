@@ -10,11 +10,7 @@
 
   <body>
     <%= render "layouts/nav" %>
-    <% flash.each do |name, message| %>
-      <div class="flash-message flash-message-<%= name %>">
-         <%= message %> <!-- stored in cookie. adds some persistence -->
-      </div>
-    <% end %>
+    <%= render "layouts/messages" %>
     <%= yield %>
   </body>
 </html>

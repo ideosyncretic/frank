@@ -1,0 +1,5 @@
+<% flash.each do |name, message| %>
+  <div class="flash-message flash-message-<%= name %> alert alert-<%= name %>">
+     <%= message %> <!-- stored in cookie. adds some persistence -->
+  </div>
+<% end %>
