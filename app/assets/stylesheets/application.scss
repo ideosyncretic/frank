@@ -18,12 +18,26 @@
  @import 'bootstrap';
  @import 'https://fonts.googleapis.com/css?family=Noto+Serif|Work+Sans';
 
+a {
+   color: green;
+   text-decoration: none;
+}
+
+a:hover {
+  color: lighten( green, 10% );
+  text-decoration: none;
+}
+
  .glyphicon {
    padding-right: 5px;
  }
 
 .btn-default {
   border: none;
+}
+
+.btn-wide {
+  width: 100%;
 }
 
 .btn-confirm {
@@ -49,4 +63,91 @@
   background-color: ghostwhite;
   box-shadow: none !important;
   outline: none !important;
+}
+
+#search:invalid + .input-group-btn {
+    .btn-search {
+      background-color: lightgrey;
+      border: 1px solid lightgrey;
+    }
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+.panel-heading {
+  text-align: center;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Dipole_xmting_antenna_animation_4_408x318x150ms.gif/310px-Dipole_xmting_antenna_animation_4_408x318x150ms.gif)
+}
+
+.table td {
+   text-align: center;
+}
+
+.table td.td-post {
+   text-align: left;
+}
+
+.posts {
+  padding-bottom: 30px;
+}
+
+.inactive {
+  color: lightgrey;
+}
+
+.vibe-1 {
+  background-color: thistle;
+}
+
+.vibe-1:before {
+font-size: 30px;
+content: "😈 ";
+}
+
+.vibe-2 {
+  background-color: lightyellow;
+}
+
+.vibe-2:before {
+font-size: 30px;
+content: "👍 ";
+}
+
+.vibe-3 {
+  background-color: whitesmoke;
+}
+
+.vibe-3:before {
+font-size: 30px;
+content: "☁️ ";
+}
+
+.vibe-4 {
+  background-color: lightblue;
+}
+
+.vibe-4:before {
+font-size: 30px;
+content: "😓 ";
+}
+
+.vibe-5 {
+  background-color: lightsteelblue;
+}
+
+.vibe-5:before {
+font-size: 30px;
+content: "🙇🏻 ";
+}
+
+.vibe-6 {
+  background-color: lightsalmon;
+}
+
+.vibe-6:before {
+font-size: 30px;
+content: "😡 ";
 }
