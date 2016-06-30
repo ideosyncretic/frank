@@ -7,7 +7,9 @@
   <%= @post.user.email %>
 </p>
 
-<a href="<%= edit_post_path(@post) %>" class="btn btn-default btn-back">Edit
-</a>
 <a href="<%= posts_path %>" class="btn btn-default btn-back">Back
 </a>
+<% if current_user == @post.user %>
+<a href="<%= edit_post_path(@post) %>" class="btn btn-default btn-back">Edit
+</a>
+<% end %>

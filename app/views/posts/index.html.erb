@@ -1,41 +1,54 @@
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Posts</div>
+  <div class="panel-body">
 
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
+    <!-- SEARCH BAR -->
+        <div class="input-group">
 
-      <form class="searchform center has-feedback" action="<%= posts_path %>" method="get" >
-        <%= text_field_tag :search, params[:search], class: "searchfield form-control", placeholder: "Search Posts" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Search", class: 'btn btn-default btn-search' %>
-        </span>
-      </form>
+          <form class="searchform center has-feedback" action="<%= user_posts_path %>" method="get" >
+            <%= text_field_tag :search, params[:search], class: "searchfield form-control", placeholder: "Search Posts" %>
+            <span class="input-group-btn">
+              <%= submit_tag "Search", class: 'btn btn-default btn-search' %>
+            </span>
+          </form>
 
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+        </div>
+
+    <!-- SEARCH BAR -->
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th colspan="1">Vibe</th>
+        <th colspan="1">Post</th>
+        <th colspan="1">User</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.vibe.name %></td>
+          <td><%= post.body %></td>
+          <td><%= post.user.name %></td>
+          <td><%= link_to 'View', user_post_path(post.user.id, post.id) %></td>
+          <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_user_post_path(post.user.id, post.id) %></td>
+          <td><%= link_to 'Destroy', user_post_path(post.user.id, post.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.vibe.name %></td>
-        <td><%= post.body %></td>
-        <td><%= post.user.email %></td>
-        <td><%= link_to 'Show', post %></td>
-        <% if user_signed_in? %>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_user_post_path %>
