@@ -1,12 +1,12 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Posts</div>
+  <div class="panel-heading">All Users Posts</div>
   <div class="panel-body">
 
     <!-- SEARCH BAR -->
         <div class="input-group">
 
-          <form class="searchform center has-feedback" action="<%= user_posts_path %>" method="get" >
+          <form class="searchform center has-feedback" action="<%= home_path %>" method="get" >
             <%= text_field_tag :search, params[:search], class: "searchfield form-control", placeholder: "Search Posts" %>
             <span class="input-group-btn">
               <%= submit_tag "Search", class: 'btn btn-default btn-search' %>
@@ -50,5 +50,6 @@
 
 
 <br>
-
-<%= link_to 'New Post', new_user_post_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Post', new_user_post_path(current_user) %>
+<% end %>
