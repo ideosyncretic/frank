@@ -20,12 +20,10 @@
 
     <fieldset class="form-group">
       <%= f.text_area :body, class:"form-control", maxlength: @maximum_length, id: 'post_body' %>
-      Chars left: <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @maximum_length %></span>
+      <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @maximum_length %></span> characters remaining
     </fieldset>
 
     <fieldset class="actions">
-      <button class="btn btn-default btn-back" href="<%= posts_path %>">Back
-      </button>
       <% if current_page?(new_post_path) %>
       <%= f.submit "Create Post", class:"btn btn-default btn-confirm" %>
       <% else %>
@@ -34,15 +32,23 @@
     </fieldset>
   <% end %>
 
+  <a href="<%= posts_path %>" class="btn btn-default btn-back">Back
+  </a>
+
+<!-- Character countdown -->
   <script>
     $(document).ready(function() {
       var post_body = $("#post_body");
       var counter     = $("#counter");
       var max_length  = counter.data("maximum-length");
 
-      post_body.keyup(function() {
-          counter.text(max_length - $(this).val().length);
-      });
+      post_body.keyup(updateCount);
+      post_body.keydown(updateCount);
+
+      function updateCount() {
+        var current_length = $(this).val().length;
+        $('#counter').text( max_length - current_length)
+      }
 
     });
 </script>

@@ -11,7 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
  $font-family-sans-serif: "Work Sans", Helvetica, Arial, sans-serif !default;
  $font-size-base: 16px;
 
@@ -34,3 +33,20 @@
  .btn-back {
  background-color: lightgrey;
  }
+
+.btn-search {
+  background-color: lightgreen;
+  border: 1px solid lightgreen;
+}
+
+.btn-search:hover {
+    background-color: darken( lightgreen, 10% );
+    border: 1px solid darken( lightgreen, 10% );
+  }
+
+.searchfield {
+  border: none !important;
+  background-color: ghostwhite;
+  box-shadow: none !important;
+  outline: none !important;
+}

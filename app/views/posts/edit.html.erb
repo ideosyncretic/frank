@@ -3,7 +3,7 @@
   <%= form_for(@post) do |f| %>
     <% if @post.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <h2><%= pluralize(p@ost.errors.count, "error") %> prohibited this post from being saved:</h2>
 
         <ul>
         <% @post.errors.full_messages.each do |message| %>
@@ -14,16 +14,16 @@
     <% end %>
 
     <fieldset class="form-group">
-      <%= f.collection_select(:vibe, Vibe.all, :id, :name) %>
+      <%= f.label :vibe %>
+      <%= f.collection_select(:vibe_id, @vibes, :id, :name, required: true) %>
     </fieldset>
 
     <fieldset class="form-group">
-      <%= f.text_area :body, class:"form-control" %>
+      <%= f.text_area :body, class:"form-control", maxlength: @maximum_length, id: 'post_body' %>
+      <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @maximum_length %></span> characters remaining
     </fieldset>
 
     <fieldset class="actions">
-      <button class="btn btn-default btn-back" href="<%= posts_path %>">Back
-      </button>
       <% if current_page?(new_post_path) %>
       <%= f.submit "Create Post", class:"btn btn-default btn-confirm" %>
       <% else %>
@@ -31,8 +31,28 @@
       <% end %>
     </fieldset>
   <% end %>
+
+  <a href="<%= posts_path %>" class="btn btn-default btn-back">Back
+  </a>
+
+<!-- Character countdown -->
+  <script>
+    $(document).ready(function() {
+      var post_body = $("#post_body");
+      var counter     = $("#counter");
+      var max_length  = counter.data("maximum-length");
+
+      counter.text($(this).val().length)
+
+      post_body.keyup(updateCount);
+      post_body.keydown(updateCount);
+
+      function updateCount() {
+        var current_length = $(this).val().length;
+        $('#counter').text(max_length - current_length)
+      }
+
+    });
+</script>
+
 </div>
-
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>

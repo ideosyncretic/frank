@@ -6,7 +6,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order("created_at DESC")
+
+    if params[:search].present?
+      search = params[:search]
+      @posts = Post.where("body LIKE ?", "%#{search}%")
+    else
+      @posts = Post.all.order("created_at DESC")
+    end
+
   end
 
   # GET /posts/1
@@ -22,6 +29,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @maximum_length = Post.validators_on( :body ).first.options[:maximum]
   end
 
   # POST /posts
