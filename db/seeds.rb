@@ -9,19 +9,19 @@
 
 
 vibe1 = Vibe.create({
-name: "SLAYIN'"
+name: "Slaying"
 })
 
 vibe2 = Vibe.create({
-name: "Good. Better than expected."
+name: "Good"
 })
 
 vibe3 = Vibe.create({
-name: "Zenning out"
+name: "Zen"
 })
 
 vibe4 = Vibe.create({
-name: "I have no idea what I'm doing"
+name: "Lost"
 })
 
 vibe5 = Vibe.create({

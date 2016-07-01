@@ -14,6 +14,7 @@ class PostsController < ApplicationController
       @posts = Post.all.order("created_at DESC")
     end
 
+    # @user = User.find(params[:user_id]).name
   end
 
 

@@ -42,7 +42,7 @@
             <td class="vibe-<%= post.vibe.id %>"></td>
             <td class="td-post"><%= post.body %></td>
             <td><a href="<%= user_posts_path(post.user) %>"><%= post.user.name %></a></td>
-            <!-- <td><a href="<%= user_post_path(post.user.id, post.id) %>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></td> -->
+            <td><a href="<%= user_post_path(post.user.id, post.id) %>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></td>
             <% if post.user != current_user %>
             <td><span class="glyphicon glyphicon-pencil inactive" aria-hidden="true"></span></td>
             <td><span class="glyphicon glyphicon-trash inactive" aria-hidden="true"></span></td>
